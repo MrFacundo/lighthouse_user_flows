@@ -1,15 +1,10 @@
 {
   "type": "module",
-  "name": "lighthouse",
+  "name": "lighthouse_user_flows",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node flow.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "chrome-launcher": "^1.0.0",
     "lighthouse": "^11.0.0",
