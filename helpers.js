@@ -1,3 +1,6 @@
+import { writeFileSync } from "fs";
+import open from "open";
+
 async function waitForAndClick(selector, page, timeout) {
 	await scrollIntoViewIfNeeded(selector, page, timeout);
 	const element = await waitForSelectors(selector, page, {
@@ -45,6 +48,16 @@ async function waitForSelectors(selectors, frame, options) {
 	throw new Error(
 		"Could not find element for selectors: " + JSON.stringify(selectors)
 	);
+}
+
+async function generateAndOpenReport(flow) {
+	const reportHtml = await flow.generateReport();
+	const reportResult = await flow.createFlowResult();
+
+	writeFileSync("flow.report.html", reportHtml);
+	writeFileSync("flow-result.json", JSON.stringify(reportResult, null, 2));
+
+	open("flow.report.html", { wait: false });
 }
 
 async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
@@ -182,7 +195,6 @@ async function waitForElement(step, frame, timeout) {
 	}, timeout);
 }
 
-
 async function querySelectorsAll(selectors, frame) {
 	for (const selector of selectors) {
 		const result = await querySelectorAll(selector, frame);
@@ -283,4 +295,4 @@ async function typeIntoElement(element, value) {
 	await element.type(textToType);
 }
 
-export {waitForAndClick, waitForAndType };
+export { waitForAndClick, waitForAndType, generateAndOpenReport};
