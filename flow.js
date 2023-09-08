@@ -48,9 +48,8 @@ async function captureReport() {
 	await new Promise((r) => setTimeout(r, 1000));
 	await flow.endTimespan();
 
-	/* Timespan 2 - Click on load more button */
-	await flow.startTimespan({ name: "Click on load more" });
-	// Click on load more
+	/* Timespan 2 - Click on element */
+	await flow.startTimespan({ name: "Click on element" });
 	await waitForAndClick(loadMoreSelector, page, timeout);
 	await new Promise((r) => setTimeout(r, 1000));
 	// Open a new tab so INP is registered

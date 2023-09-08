@@ -1,3 +1,3 @@
 node_modules
-flow-result.json
-flow.report.json
+.flow-result.json
+.flow.report.json
